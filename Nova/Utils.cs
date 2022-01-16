@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nova.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -55,6 +56,13 @@ namespace Nova
             }
 
             return Convert.ToBase64String(memStream.ToArray());
+        }
+
+        public static void cleanSession()
+        {
+            Sezzion.idUsuario = Sezzion.nombreCompleto = Sezzion.codigoSession = null;
+            HttpContext.Current.Session.Clear();
+
         }
 
         public static string DesEncriptarCadena(string inputString)

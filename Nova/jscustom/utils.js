@@ -28,7 +28,7 @@ var formatter = new Intl.NumberFormat('es-MX', {
 
 //var _PAGINA_PRINCIPAL_ = '../dist/blak.html';
 var _PAGINA_PRINCIPAL_ = '../dist/Nova.aspx';
-
+var _PAGINA_LOGIN_ = '../dist/page_login.html';
 
 function fg_mensaje_problema_tecnico(e) {
 

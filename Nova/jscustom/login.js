@@ -3,6 +3,7 @@
 $(document).ready(function () {
 
 
+    cleanSession();
     PAGECONTROLS = fg_setIFRAMEControls('js-login');
     $("#js-login-btn").click(function (event) {
 
@@ -22,6 +23,38 @@ $(document).ready(function () {
     });
 });
 
+function cleanSession() {
+    try {
+
+        var ruta = '../Services/WSLogin.asmx/cleanSession';
+
+        $.ajax({
+            type: 'POST',
+            url: ruta,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function (datos) {
+
+                var mensaje_servidor = JSON.parse(datos.d);
+                console.log(mensaje_servidor);
+
+                if (mensaje_servidor.Estatus == _OK_) {
+
+
+                    //Nada solo se mando a limpiar la session.
+                }
+            }
+            , error: function (error) {
+                fg_mensaje_problema_tecnico(error);
+            }
+        });
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
+    }
+}
 function getAutenticacion() {
     try {
 

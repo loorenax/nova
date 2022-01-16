@@ -10,6 +10,7 @@ namespace Nova.Data
         private static String S_idUsuario = "idUsuario";
         private static String S_login = "login";
         private static String S_nombreCompleto = "nombreCompleto";
+        private static String S_codigoSession = "codigoSession";
         public static String idUsuario
         {
             get
@@ -50,6 +51,20 @@ namespace Nova.Data
             set
             {
                 HttpContext.Current.Session[Sezzion.S_nombreCompleto] = value;
+            }
+        }
+        public static String codigoSession
+        {
+            get
+            {
+                if (HttpContext.Current.Session[Sezzion.S_codigoSession] == null)
+                    return String.Empty;
+                else
+                    return HttpContext.Current.Session[Sezzion.S_codigoSession].ToString();
+            }
+            set
+            {
+                HttpContext.Current.Session[Sezzion.S_codigoSession] = value;
             }
         }
 

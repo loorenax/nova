@@ -592,6 +592,7 @@
     <Content Include="dist\webfonts\fa-solid-900.svg" />
     <Content Include="dist\webfonts\nextgen-icons.svg" />
     <Content Include="jscustom\login.js" />
+    <Content Include="jscustom\masterPage.js" />
     <Content Include="jscustom\utils.js" />
     <Content Include="Services\WSLogin.asmx" />
     <Content Include="Web.config" />

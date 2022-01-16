@@ -22,7 +22,37 @@ namespace Nova.Services
     public class WSLogin : System.Web.Services.WebService
     {
         Login dat = new Login();
-        
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string cleanSession()
+        {
+            string Json_Resultado = string.Empty;
+            MensajeServidor ms = new MensajeServidor();
+
+            try
+            {
+                Utils.cleanSession();
+                ms.Estatus = Utils._OK_;
+            }
+            catch (Exception Ex)
+            {
+                ms.Estatus = Utils._ERROR_;
+                ms.Mensaje = Ex.Message;
+                Utils.problems(Ex);
+            }
+            finally
+            {
+                Json_Resultado = JsonMapper.ToJson(ms);
+            }
+
+
+            return Json_Resultado;
+
+
+        }
+
+
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string getAutenticacion(string Parametros)
@@ -44,13 +74,56 @@ namespace Nova.Services
                     Sezzion.idUsuario = ds.Tables[1].Rows[0]["idUsuario"].ToString();
                     Sezzion.login = ds.Tables[1].Rows[0]["login"].ToString();
                     Sezzion.nombreCompleto = ds.Tables[1].Rows[0]["nombreCompleto"].ToString();
-
+                    Sezzion.codigoSession = codigo;
                     ms.Estatus = Utils._OK_;
                 }
                 else
                 {
                     ms.Estatus = ds.Tables[0].Rows[0]["Estatus_Procedimiento"].ToString();
                     ms.Mensaje = ds.Tables[0].Rows[0]["Mensaje_Procedimiento"].ToString();
+                }
+            }
+            catch (Exception Ex)
+            {
+                ms.Estatus = Utils._ERROR_;
+                ms.Mensaje = Ex.Message;
+                Utils.problems(Ex);
+            }
+            finally
+            {
+                Json_Resultado = JsonMapper.ToJson(ms);
+            }
+
+
+            return Json_Resultado;
+
+
+        }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string getSession(string Parametros)
+        {
+            string Json_Resultado = string.Empty;
+            MensajeServidor ms = new MensajeServidor();
+
+            try
+            {
+                JavaScriptSerializer deserializar_json = new JavaScriptSerializer();
+                Dictionary<string, string> obj_parametros = deserializar_json.Deserialize<Dictionary<string, string>>(Parametros);
+
+
+
+                if (!string.IsNullOrEmpty(Sezzion.codigoSession))
+                {
+                    ms.Estatus = Utils._OK_;
+                    ms.nombreCompleto = Sezzion.nombreCompleto;
+                    ms.login = Sezzion.login;
+                }
+                else
+                {
+                    ms.Estatus = Utils._ERROR_;
+                    ms.Mensaje = "No se ha iniciado sesión.";
                 }
             }
             catch (Exception Ex)
