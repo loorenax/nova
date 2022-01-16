@@ -1,0 +1,768 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EA2681FE-C4BB-4BF6-A62B-A256414A0D36}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nova</RootNamespace>
+    <AssemblyName>Nova</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44363</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LitJSON, Version=0.17.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.17.0\lib\net45\LitJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationBlocks.Data.2.0.0\lib\net45\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\blank.html" />
+    <Content Include="dist\css\app.bundle.css" />
+    <Content Include="dist\css\datagrid\datatables\datatables.bundle.css" />
+    <Content Include="dist\css\fa-brands.css" />
+    <Content Include="dist\css\fa-duotone.css" />
+    <Content Include="dist\css\fa-light.css" />
+    <Content Include="dist\css\fa-regular.css" />
+    <Content Include="dist\css\fa-solid.css" />
+    <Content Include="dist\css\formplugins\bootstrap-colorpicker\bootstrap-colorpicker.css" />
+    <Content Include="dist\css\formplugins\bootstrap-datepicker\bootstrap-datepicker.css" />
+    <Content Include="dist\css\formplugins\bootstrap-daterangepicker\bootstrap-daterangepicker.css" />
+    <Content Include="dist\css\formplugins\bootstrap-markdown\bootstrap-markdown.css" />
+    <Content Include="dist\css\formplugins\cropperjs\cropper.css" />
+    <Content Include="dist\css\formplugins\dropzone\dropzone.css" />
+    <Content Include="dist\css\formplugins\ion-rangeslider\ion-rangeslider.css" />
+    <Content Include="dist\css\formplugins\nouislider\nouislider.css" />
+    <Content Include="dist\css\formplugins\select2\select2.bundle.css" />
+    <Content Include="dist\css\formplugins\smartwizard\smartwizard.css" />
+    <Content Include="dist\css\formplugins\summernote\summernote.css" />
+    <Content Include="dist\css\json-path-picker\json-path-picker.css" />
+    <Content Include="dist\css\miscellaneous\fullcalendar\fullcalendar.bundle.css" />
+    <Content Include="dist\css\miscellaneous\jqvmap\jqvmap.bundle.css" />
+    <Content Include="dist\css\miscellaneous\lightgallery\lightgallery.bundle.css" />
+    <Content Include="dist\css\miscellaneous\nestable\nestable.css" />
+    <Content Include="dist\css\miscellaneous\reactions\reactions.css" />
+    <Content Include="dist\css\miscellaneous\treeview\treeview.css" />
+    <Content Include="dist\css\notifications\sweetalert2\sweetalert2.bundle.css" />
+    <Content Include="dist\css\notifications\toastr\toastr.css" />
+    <Content Include="dist\css\page-invoice.css" />
+    <Content Include="dist\css\page-login-alt.css" />
+    <Content Include="dist\css\skins\skin-master.css" />
+    <Content Include="dist\css\statistics\c3\c3.css" />
+    <Content Include="dist\css\statistics\chartist\chartist.css" />
+    <Content Include="dist\css\statistics\chartjs\chartjs.css" />
+    <Content Include="dist\css\statistics\dygraph\dygraph.css" />
+    <Content Include="dist\css\theme-demo.css" />
+    <Content Include="dist\css\themes\cust-theme-1.css" />
+    <Content Include="dist\css\themes\cust-theme-10.css" />
+    <Content Include="dist\css\themes\cust-theme-11.css" />
+    <Content Include="dist\css\themes\cust-theme-12.css" />
+    <Content Include="dist\css\themes\cust-theme-13.css" />
+    <Content Include="dist\css\themes\cust-theme-14.css" />
+    <Content Include="dist\css\themes\cust-theme-15.css" />
+    <Content Include="dist\css\themes\cust-theme-2.css" />
+    <Content Include="dist\css\themes\cust-theme-3.css" />
+    <Content Include="dist\css\themes\cust-theme-4.css" />
+    <Content Include="dist\css\themes\cust-theme-5.css" />
+    <Content Include="dist\css\themes\cust-theme-6.css" />
+    <Content Include="dist\css\themes\cust-theme-7.css" />
+    <Content Include="dist\css\themes\cust-theme-8.css" />
+    <Content Include="dist\css\themes\cust-theme-9.css" />
+    <Content Include="dist\css\vendors.bundle.css" />
+    <Content Include="dist\datatables_alteditor.html" />
+    <Content Include="dist\datatables_autofill.html" />
+    <Content Include="dist\datatables_basic.html" />
+    <Content Include="dist\datatables_buttons.html" />
+    <Content Include="dist\datatables_colreorder.html" />
+    <Content Include="dist\datatables_columnfilter.html" />
+    <Content Include="dist\datatables_export.html" />
+    <Content Include="dist\datatables_fixedcolumns.html" />
+    <Content Include="dist\datatables_fixedheader.html" />
+    <Content Include="dist\datatables_keytable.html" />
+    <Content Include="dist\datatables_responsive.html" />
+    <Content Include="dist\datatables_responsive_alt.html" />
+    <Content Include="dist\datatables_rowgroup.html" />
+    <Content Include="dist\datatables_rowreorder.html" />
+    <Content Include="dist\datatables_scroller.html" />
+    <Content Include="dist\datatables_select.html" />
+    <Content Include="dist\docs_buildnotes.html" />
+    <Content Include="dist\docs_community_support.html" />
+    <Content Include="dist\docs_flavors_editions.html" />
+    <Content Include="dist\docs_general.html" />
+    <Content Include="dist\docs_licensing.html" />
+    <Content Include="dist\docs_premium_support.html" />
+    <Content Include="dist\docs_project_structure.html" />
+    <Content Include="dist\form_basic_inputs.html" />
+    <Content Include="dist\form_checkbox_radio.html" />
+    <Content Include="dist\form_input_groups.html" />
+    <Content Include="dist\form_plugins_colorpicker.html" />
+    <Content Include="dist\form_plugins_datepicker.html" />
+    <Content Include="dist\form_plugins_daterange_picker.html" />
+    <Content Include="dist\form_plugins_dropzone.html" />
+    <Content Include="dist\form_plugins_imagecropper.html" />
+    <Content Include="dist\form_plugins_inputmask.html" />
+    <Content Include="dist\form_plugins_ionrangeslider.html" />
+    <Content Include="dist\form_plugins_markdown.html" />
+    <Content Include="dist\form_plugins_nouislider.html" />
+    <Content Include="dist\form_plugins_select2.html" />
+    <Content Include="dist\form_plugins_summernote.html" />
+    <Content Include="dist\form_plugins_wizard.html" />
+    <Content Include="dist\form_validation.html" />
+    <Content Include="dist\icons_fontawesome_brand.html" />
+    <Content Include="dist\icons_fontawesome_duotone.html" />
+    <Content Include="dist\icons_fontawesome_light.html" />
+    <Content Include="dist\icons_fontawesome_regular.html" />
+    <Content Include="dist\icons_fontawesome_solid.html" />
+    <Content Include="dist\icons_nextgen_base.html" />
+    <Content Include="dist\icons_nextgen_general.html" />
+    <Content Include="dist\icons_stack_generate.html" />
+    <Content Include="dist\icons_stack_showcase.html" />
+    <Content Include="dist\icons_webfonts_faq.html" />
+    <Content Include="dist\img\backgrounds\bg-1.png" />
+    <Content Include="dist\img\backgrounds\bg-2.png" />
+    <Content Include="dist\img\backgrounds\bg-3.png" />
+    <Content Include="dist\img\backgrounds\bg-4.png" />
+    <Content Include="dist\img\backgrounds\bg-5.png" />
+    <Content Include="dist\img\backgrounds\clouds.png" />
+    <Content Include="dist\img\backgrounds\credit.txt" />
+    <Content Include="dist\img\backgrounds\glass.jpg" />
+    <Content Include="dist\img\backgrounds\page-bg.png" />
+    <Content Include="dist\img\backgrounds\prev-bg-1.png" />
+    <Content Include="dist\img\backgrounds\prev-bg-2.png" />
+    <Content Include="dist\img\backgrounds\prev-bg-3.png" />
+    <Content Include="dist\img\backgrounds\prev-bg-4.png" />
+    <Content Include="dist\img\bitbucket-logo.png" />
+    <Content Include="dist\img\card-backgrounds\cover-1-lg.png" />
+    <Content Include="dist\img\card-backgrounds\cover-2-lg.png" />
+    <Content Include="dist\img\card-backgrounds\cover-3-lg.png" />
+    <Content Include="dist\img\card-backgrounds\cover-4-lg.png" />
+    <Content Include="dist\img\card-backgrounds\cover-5-lg.png" />
+    <Content Include="dist\img\card-backgrounds\cover-6-lg.png" />
+    <Content Include="dist\img\card-backgrounds\cover-7-lg.png" />
+    <Content Include="dist\img\clouds.png" />
+    <Content Include="dist\img\demo\ajax.png" />
+    <Content Include="dist\img\demo\angular.png" />
+    <Content Include="dist\img\demo\authors\josh.png" />
+    <Content Include="dist\img\demo\authors\jovanni.png" />
+    <Content Include="dist\img\demo\authors\roberto.png" />
+    <Content Include="dist\img\demo\authors\sunny.png" />
+    <Content Include="dist\img\demo\avatars\avatar-a.png" />
+    <Content Include="dist\img\demo\avatars\avatar-admin-lg.png" />
+    <Content Include="dist\img\demo\avatars\avatar-admin.png" />
+    <Content Include="dist\img\demo\avatars\avatar-admin.txt" />
+    <Content Include="dist\img\demo\avatars\avatar-b.png" />
+    <Content Include="dist\img\demo\avatars\avatar-c.png" />
+    <Content Include="dist\img\demo\avatars\avatar-d.png" />
+    <Content Include="dist\img\demo\avatars\avatar-e.png" />
+    <Content Include="dist\img\demo\avatars\avatar-f.png" />
+    <Content Include="dist\img\demo\avatars\avatar-g.png" />
+    <Content Include="dist\img\demo\avatars\avatar-h.png" />
+    <Content Include="dist\img\demo\avatars\avatar-i.png" />
+    <Content Include="dist\img\demo\avatars\avatar-j.png" />
+    <Content Include="dist\img\demo\avatars\avatar-k.png" />
+    <Content Include="dist\img\demo\avatars\avatar-m.png" />
+    <Content Include="dist\img\demo\avatars\cc.txt" />
+    <Content Include="dist\img\demo\avatars\ng.jpg" />
+    <Content Include="dist\img\demo\chromedevtools-1.png" />
+    <Content Include="dist\img\demo\chromedevtools-2.png" />
+    <Content Include="dist\img\demo\chromedevtools-3.png" />
+    <Content Include="dist\img\demo\chromedevtools-4.png" />
+    <Content Include="dist\img\demo\debounce-at_begin.png" />
+    <Content Include="dist\img\demo\debounce.png" />
+    <Content Include="dist\img\demo\demo-panel.png" />
+    <Content Include="dist\img\demo\gallery\1.jpg" />
+    <Content Include="dist\img\demo\gallery\10.jpg" />
+    <Content Include="dist\img\demo\gallery\11.jpg" />
+    <Content Include="dist\img\demo\gallery\12.jpg" />
+    <Content Include="dist\img\demo\gallery\13.jpg" />
+    <Content Include="dist\img\demo\gallery\14.jpg" />
+    <Content Include="dist\img\demo\gallery\15.jpg" />
+    <Content Include="dist\img\demo\gallery\16.jpg" />
+    <Content Include="dist\img\demo\gallery\17.jpg" />
+    <Content Include="dist\img\demo\gallery\18.jpg" />
+    <Content Include="dist\img\demo\gallery\19.jpg" />
+    <Content Include="dist\img\demo\gallery\2.jpg" />
+    <Content Include="dist\img\demo\gallery\20.jpg" />
+    <Content Include="dist\img\demo\gallery\21.jpg" />
+    <Content Include="dist\img\demo\gallery\22.jpg" />
+    <Content Include="dist\img\demo\gallery\23.jpg" />
+    <Content Include="dist\img\demo\gallery\24.jpg" />
+    <Content Include="dist\img\demo\gallery\25.jpg" />
+    <Content Include="dist\img\demo\gallery\26.jpg" />
+    <Content Include="dist\img\demo\gallery\27.jpg" />
+    <Content Include="dist\img\demo\gallery\28.jpg" />
+    <Content Include="dist\img\demo\gallery\29.jpg" />
+    <Content Include="dist\img\demo\gallery\3.jpg" />
+    <Content Include="dist\img\demo\gallery\30.jpg" />
+    <Content Include="dist\img\demo\gallery\31.jpg" />
+    <Content Include="dist\img\demo\gallery\32.jpg" />
+    <Content Include="dist\img\demo\gallery\33.jpg" />
+    <Content Include="dist\img\demo\gallery\34.jpg" />
+    <Content Include="dist\img\demo\gallery\35.jpg" />
+    <Content Include="dist\img\demo\gallery\36.jpg" />
+    <Content Include="dist\img\demo\gallery\37.jpg" />
+    <Content Include="dist\img\demo\gallery\38.jpg" />
+    <Content Include="dist\img\demo\gallery\39.jpg" />
+    <Content Include="dist\img\demo\gallery\4.jpg" />
+    <Content Include="dist\img\demo\gallery\40.jpg" />
+    <Content Include="dist\img\demo\gallery\41.jpg" />
+    <Content Include="dist\img\demo\gallery\42.jpg" />
+    <Content Include="dist\img\demo\gallery\43.jpg" />
+    <Content Include="dist\img\demo\gallery\44.jpg" />
+    <Content Include="dist\img\demo\gallery\45.jpg" />
+    <Content Include="dist\img\demo\gallery\46.jpg" />
+    <Content Include="dist\img\demo\gallery\47.jpg" />
+    <Content Include="dist\img\demo\gallery\48.jpg" />
+    <Content Include="dist\img\demo\gallery\49.jpg" />
+    <Content Include="dist\img\demo\gallery\5.jpg" />
+    <Content Include="dist\img\demo\gallery\50.jpg" />
+    <Content Include="dist\img\demo\gallery\51.jpg" />
+    <Content Include="dist\img\demo\gallery\52.jpg" />
+    <Content Include="dist\img\demo\gallery\53.jpg" />
+    <Content Include="dist\img\demo\gallery\54.jpg" />
+    <Content Include="dist\img\demo\gallery\55.jpg" />
+    <Content Include="dist\img\demo\gallery\56.jpg" />
+    <Content Include="dist\img\demo\gallery\57.jpg" />
+    <Content Include="dist\img\demo\gallery\58.jpg" />
+    <Content Include="dist\img\demo\gallery\59.jpg" />
+    <Content Include="dist\img\demo\gallery\6.jpg" />
+    <Content Include="dist\img\demo\gallery\7.jpg" />
+    <Content Include="dist\img\demo\gallery\8.jpg" />
+    <Content Include="dist\img\demo\gallery\9.jpg" />
+    <Content Include="dist\img\demo\gallery\source.txt" />
+    <Content Include="dist\img\demo\gallery\thumb\1.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\10.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\11.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\12.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\13.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\14.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\15.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\16.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\17.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\18.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\19.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\2.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\20.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\21.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\22.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\23.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\24.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\25.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\26.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\27.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\28.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\29.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\3.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\30.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\31.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\32.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\33.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\34.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\35.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\36.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\37.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\38.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\39.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\4.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\40.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\41.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\42.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\43.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\44.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\45.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\46.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\47.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\48.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\49.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\5.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\50.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\51.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\52.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\53.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\54.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\55.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\56.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\57.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\58.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\59.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\6.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\7.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\8.jpg" />
+    <Content Include="dist\img\demo\gallery\thumb\9.jpg" />
+    <Content Include="dist\img\demo\grid-options.png" />
+    <Content Include="dist\img\demo\html5.png" />
+    <Content Include="dist\img\demo\laravel.png" />
+    <Content Include="dist\img\demo\modes\mode-dark-lg.png" />
+    <Content Include="dist\img\demo\modes\mode-dark.png" />
+    <Content Include="dist\img\demo\modes\mode-default-lg.png" />
+    <Content Include="dist\img\demo\modes\mode-glass-lg.png" />
+    <Content Include="dist\img\demo\modes\mode-light-lg.png" />
+    <Content Include="dist\img\demo\modes\mode-light.png" />
+    <Content Include="dist\img\demo\mvc.png" />
+    <Content Include="dist\img\demo\peace-full.jpg" />
+    <Content Include="dist\img\demo\php.png" />
+    <Content Include="dist\img\demo\position-absolute.gif" />
+    <Content Include="dist\img\demo\position-fixed.gif" />
+    <Content Include="dist\img\demo\position-sticky.gif" />
+    <Content Include="dist\img\demo\profile\article-healthyfood.png" />
+    <Content Include="dist\img\demo\profile\cc.txt" />
+    <Content Include="dist\img\demo\rails.png" />
+    <Content Include="dist\img\demo\react.png" />
+    <Content Include="dist\img\demo\relax-full.jpg" />
+    <Content Include="dist\img\demo\s-1.png" />
+    <Content Include="dist\img\demo\sea-full.jpg" />
+    <Content Include="dist\img\demo\search\1.png" />
+    <Content Include="dist\img\demo\search\10.png" />
+    <Content Include="dist\img\demo\search\11.png" />
+    <Content Include="dist\img\demo\search\12.png" />
+    <Content Include="dist\img\demo\search\13.png" />
+    <Content Include="dist\img\demo\search\14.png" />
+    <Content Include="dist\img\demo\search\15.png" />
+    <Content Include="dist\img\demo\search\2.png" />
+    <Content Include="dist\img\demo\search\3.png" />
+    <Content Include="dist\img\demo\search\4.png" />
+    <Content Include="dist\img\demo\search\5.png" />
+    <Content Include="dist\img\demo\search\6.png" />
+    <Content Include="dist\img\demo\side-panel-demo.gif" />
+    <Content Include="dist\img\demo\skins\black.png" />
+    <Content Include="dist\img\demo\skins\blue.png" />
+    <Content Include="dist\img\demo\skins\green.png" />
+    <Content Include="dist\img\demo\skins\pink.png" />
+    <Content Include="dist\img\demo\throttle-no_trailing.png" />
+    <Content Include="dist\img\demo\throttle.png" />
+    <Content Include="dist\img\demo\vuejs.png" />
+    <Content Include="dist\img\favicon\android-chrome-144x144.png" />
+    <Content Include="dist\img\favicon\apple-touch-icon.png" />
+    <Content Include="dist\img\favicon\browserconfig.xml" />
+    <Content Include="dist\img\favicon\favicon-16x16.png" />
+    <Content Include="dist\img\favicon\favicon-32x32.png" />
+    <Content Include="dist\img\favicon\favicon-generator.txt" />
+    <Content Include="dist\img\favicon\favicon.ico" />
+    <Content Include="dist\img\favicon\mstile-150x150.png" />
+    <Content Include="dist\img\favicon\safari-pinned-tab.svg" />
+    <Content Include="dist\img\loading.gif" />
+    <Content Include="dist\img\logo-big.png" />
+    <Content Include="dist\img\logo-flat.svg" />
+    <Content Include="dist\img\logo-gradient.svg" />
+    <Content Include="dist\img\logo-red.png" />
+    <Content Include="dist\img\logo.png" />
+    <Content Include="dist\img\logo.svg" />
+    <Content Include="dist\img\svg\pattern-1.svg" />
+    <Content Include="dist\img\svg\pattern-2.svg" />
+    <Content Include="dist\img\svg\pattern-3.svg" />
+    <Content Include="dist\img\svg\pattern-4.svg" />
+    <Content Include="dist\img\thumbs\ng-thumb-1.png" />
+    <Content Include="dist\img\thumbs\ng-thumb-2.png" />
+    <Content Include="dist\img\thumbs\ng-thumb-3.png" />
+    <Content Include="dist\img\thumbs\ng-thumb-4.png" />
+    <Content Include="dist\img\thumbs\ng-thumb-video-1.png" />
+    <Content Include="dist\img\thumbs\ng-thumb-video-2.png" />
+    <Content Include="dist\img\thumbs\pic-1.png" />
+    <Content Include="dist\img\thumbs\pic-10.png" />
+    <Content Include="dist\img\thumbs\pic-11.png" />
+    <Content Include="dist\img\thumbs\pic-12.png" />
+    <Content Include="dist\img\thumbs\pic-3.png" />
+    <Content Include="dist\img\thumbs\pic-4.png" />
+    <Content Include="dist\img\thumbs\pic-5.png" />
+    <Content Include="dist\img\thumbs\pic-6.png" />
+    <Content Include="dist\img\thumbs\pic-7.png" />
+    <Content Include="dist\img\thumbs\pic-8.png" />
+    <Content Include="dist\img\thumbs\pic-9.png" />
+    <Content Include="dist\intel_analytics_dashboard.html" />
+    <Content Include="dist\intel_introduction.html" />
+    <Content Include="dist\intel_marketing_dashboard.html" />
+    <Content Include="dist\intel_privacy.html" />
+    <Content Include="dist\js\app.bundle.js" />
+    <Content Include="dist\js\datagrid\datatables\datatables.bundle.js" />
+    <Content Include="dist\js\datagrid\datatables\datatables.export.js" />
+    <Content Include="dist\js\dependency\moment\moment.js" />
+    <Content Include="dist\js\formplugins\bootstrap-colorpicker\bootstrap-colorpicker.js" />
+    <Content Include="dist\js\formplugins\bootstrap-datepicker\bootstrap-datepicker.js" />
+    <Content Include="dist\js\formplugins\bootstrap-daterangepicker\bootstrap-daterangepicker.js" />
+    <Content Include="dist\js\formplugins\bootstrap-markdown\bootstrap-markdown.js" />
+    <Content Include="dist\js\formplugins\cropperjs\cropper.js" />
+    <Content Include="dist\js\formplugins\dropzone\dropzone.js" />
+    <Content Include="dist\js\formplugins\inputmask\inputmask.bundle.js" />
+    <Content Include="dist\js\formplugins\ion-rangeslider\ion-rangeslider.js" />
+    <Content Include="dist\js\formplugins\nouislider\nouislider.js" />
+    <Content Include="dist\js\formplugins\select2\select2.bundle.js" />
+    <Content Include="dist\js\formplugins\smartwizard\smartwizard.js" />
+    <Content Include="dist\js\formplugins\summernote\summernote.js" />
+    <Content Include="dist\js\i18n\i18n.js" />
+    <Content Include="dist\js\json-path-picker\json-path-picker.js" />
+    <Content Include="dist\js\miscellaneous\fullcalendar\fullcalendar.bundle.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\jqvmap.bundle.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.algeria.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.argentina.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.brazil.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.canada.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.europe.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.france.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.germany.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.greece.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.iran.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.iraq.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.russia.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.tunisia.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.turkey.js" />
+    <Content Include="dist\js\miscellaneous\jqvmap\maps\jquery.vmap.usa.js" />
+    <Content Include="dist\js\miscellaneous\lightgallery\lightgallery.bundle.js" />
+    <Content Include="dist\js\miscellaneous\lightgallery\smartvoice.bundle.js" />
+    <Content Include="dist\js\miscellaneous\nestable\nestable.js" />
+    <Content Include="dist\js\miscellaneous\treeview\treeview.js" />
+    <Content Include="dist\js\notifications\sweetalert2\sweetalert2.bundle.js" />
+    <Content Include="dist\js\notifications\toastr\toastr.js" />
+    <Content Include="dist\js\statistics\c3\c3.js" />
+    <Content Include="dist\js\statistics\chartist\chartist.js" />
+    <Content Include="dist\js\statistics\chartjs\chartjs.bundle.js" />
+    <Content Include="dist\js\statistics\d3\d3.js" />
+    <Content Include="dist\js\statistics\demo-data\demo-c3.js" />
+    <Content Include="dist\js\statistics\demo-data\demo-data-dygraph.js" />
+    <Content Include="dist\js\statistics\dygraph\dygraph.js" />
+    <Content Include="dist\js\statistics\easypiechart\easypiechart.bundle.js" />
+    <Content Include="dist\js\statistics\flot\flot.bundle.js" />
+    <Content Include="dist\js\statistics\peity\peity.bundle.js" />
+    <Content Include="dist\js\statistics\sparkline\sparkline.bundle.js" />
+    <Content Include="dist\js\vendors.bundle.js" />
+    <Content Include="dist\media\sound\bigbox.mp3" />
+    <Content Include="dist\media\sound\bigbox.ogg" />
+    <Content Include="dist\media\sound\license.txt" />
+    <Content Include="dist\media\sound\messagebox.mp3" />
+    <Content Include="dist\media\sound\messagebox.ogg" />
+    <Content Include="dist\media\sound\smallbox.mp3" />
+    <Content Include="dist\media\sound\smallbox.ogg" />
+    <Content Include="dist\media\sound\voice_alert.mp3" />
+    <Content Include="dist\media\sound\voice_alert.ogg" />
+    <Content Include="dist\media\sound\voice_off.mp3" />
+    <Content Include="dist\media\sound\voice_off.ogg" />
+    <Content Include="dist\media\sound\voice_on.mp3" />
+    <Content Include="dist\media\sound\voice_on.ogg" />
+    <Content Include="dist\media\video\36150715-heavenly-clouds-v2-license.txt" />
+    <Content Include="dist\media\video\cc.mp4" />
+    <Content Include="dist\media\video\cc.webm" />
+    <Content Include="dist\miscellaneous_fullcalendar.html" />
+    <Content Include="dist\miscellaneous_lightgallery.html" />
+    <Content Include="dist\miscellaneous_treeview.html" />
+    <Content Include="dist\notifications_sweetalert2.html" />
+    <Content Include="dist\notifications_toastr.html" />
+    <Content Include="dist\Nova.aspx" />
+    <Content Include="dist\page_chat.html" />
+    <Content Include="dist\page_confirmation.html" />
+    <Content Include="dist\page_contacts.html" />
+    <Content Include="dist\page_error.html" />
+    <Content Include="dist\page_error_404.html" />
+    <Content Include="dist\page_error_announced.html" />
+    <Content Include="dist\page_forget.html" />
+    <Content Include="dist\page_forum_discussion.html" />
+    <Content Include="dist\page_forum_list.html" />
+    <Content Include="dist\page_forum_threads.html" />
+    <Content Include="dist\page_inbox_general.html" />
+    <Content Include="dist\page_inbox_read.html" />
+    <Content Include="dist\page_inbox_write.html" />
+    <Content Include="dist\page_invoice.html" />
+    <Content Include="dist\page_locked.html" />
+    <Content Include="dist\page_login.html" />
+    <Content Include="dist\page_login_alt.html" />
+    <Content Include="dist\page_profile.html" />
+    <Content Include="dist\page_projects.html" />
+    <Content Include="dist\page_register.html" />
+    <Content Include="dist\page_search.html" />
+    <Content Include="dist\plugins_appcore.html" />
+    <Content Include="dist\plugins_bootbox.html" />
+    <Content Include="dist\plugins_faq.html" />
+    <Content Include="dist\plugins_i18next.html" />
+    <Content Include="dist\plugins_navigation.html" />
+    <Content Include="dist\plugins_pacejs.html" />
+    <Content Include="dist\plugins_slimscroll.html" />
+    <Content Include="dist\plugins_smartpanels.html" />
+    <Content Include="dist\plugins_throttle.html" />
+    <Content Include="dist\plugins_waves.html" />
+    <Content Include="dist\settings_how_it_works.html" />
+    <Content Include="dist\settings_layout_options.html" />
+    <Content Include="dist\settings_saving_db.html" />
+    <Content Include="dist\settings_skin_options.html" />
+    <Content Include="dist\settings_theme_modes.html" />
+    <Content Include="dist\statistics_c3.html" />
+    <Content Include="dist\statistics_chartist.html" />
+    <Content Include="dist\statistics_chartjs.html" />
+    <Content Include="dist\statistics_dygraph.html" />
+    <Content Include="dist\statistics_easypiechart.html" />
+    <Content Include="dist\statistics_flot.html" />
+    <Content Include="dist\statistics_peity.html" />
+    <Content Include="dist\statistics_sparkline.html" />
+    <Content Include="dist\tables_basic.html" />
+    <Content Include="dist\tables_generate_style.html" />
+    <Content Include="dist\ui_accordion.html" />
+    <Content Include="dist\ui_alerts.html" />
+    <Content Include="dist\ui_badges.html" />
+    <Content Include="dist\ui_breadcrumbs.html" />
+    <Content Include="dist\ui_buttons.html" />
+    <Content Include="dist\ui_button_group.html" />
+    <Content Include="dist\ui_cards.html" />
+    <Content Include="dist\ui_carousel.html" />
+    <Content Include="dist\ui_collapse.html" />
+    <Content Include="dist\ui_dropdowns.html" />
+    <Content Include="dist\ui_list_filter.html" />
+    <Content Include="dist\ui_modal.html" />
+    <Content Include="dist\ui_navbars.html" />
+    <Content Include="dist\ui_pagination.html" />
+    <Content Include="dist\ui_panels.html" />
+    <Content Include="dist\ui_popovers.html" />
+    <Content Include="dist\ui_progress_bars.html" />
+    <Content Include="dist\ui_scrollspy.html" />
+    <Content Include="dist\ui_side_panel.html" />
+    <Content Include="dist\ui_spinners.html" />
+    <Content Include="dist\ui_tabs_accordions.html" />
+    <Content Include="dist\ui_tabs_pills.html" />
+    <Content Include="dist\ui_toasts.html" />
+    <Content Include="dist\ui_tooltips.html" />
+    <Content Include="dist\ui_tooltips_popovers.html" />
+    <Content Include="dist\utilities_borders.html" />
+    <Content Include="dist\utilities_clearfix.html" />
+    <Content Include="dist\utilities_color_pallet.html" />
+    <Content Include="dist\utilities_display_property.html" />
+    <Content Include="dist\utilities_flexbox.html" />
+    <Content Include="dist\utilities_fonts.html" />
+    <Content Include="dist\utilities_helpers.html" />
+    <Content Include="dist\utilities_position.html" />
+    <Content Include="dist\utilities_responsive_grid.html" />
+    <Content Include="dist\utilities_sizing.html" />
+    <Content Include="dist\utilities_spacing.html" />
+    <Content Include="dist\utilities_typography.html" />
+    <Content Include="dist\webfonts\fa-brands-400.svg" />
+    <Content Include="dist\webfonts\fa-duotone-900.svg" />
+    <Content Include="dist\webfonts\fa-light-300.svg" />
+    <Content Include="dist\webfonts\fa-regular-400.svg" />
+    <Content Include="dist\webfonts\fa-solid-900.svg" />
+    <Content Include="dist\webfonts\nextgen-icons.svg" />
+    <Content Include="jscustom\login.js" />
+    <Content Include="jscustom\utils.js" />
+    <Content Include="Services\WSLogin.asmx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\Cnxn.cs" />
+    <Compile Include="Data\Login.cs" />
+    <Compile Include="Data\MensajeServidor.cs" />
+    <Compile Include="Data\Sezzion.cs" />
+    <Compile Include="dist\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dist\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="dist\Nova.aspx.cs">
+      <DependentUpon>Nova.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dist\Nova.aspx.designer.cs">
+      <DependentUpon>Nova.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\WSLogin.asmx.cs">
+      <DependentUpon>WSLogin.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\css\app.bundle.css.map" />
+    <Content Include="dist\css\datagrid\datatables\datatables.bundle.css.map" />
+    <Content Include="dist\css\fa-brands.css.map" />
+    <Content Include="dist\css\fa-duotone.css.map" />
+    <Content Include="dist\css\fa-light.css.map" />
+    <Content Include="dist\css\fa-regular.css.map" />
+    <Content Include="dist\css\fa-solid.css.map" />
+    <Content Include="dist\css\formplugins\bootstrap-colorpicker\bootstrap-colorpicker.css.map" />
+    <Content Include="dist\css\formplugins\bootstrap-datepicker\bootstrap-datepicker.css.map" />
+    <Content Include="dist\css\formplugins\bootstrap-daterangepicker\bootstrap-daterangepicker.css.map" />
+    <Content Include="dist\css\formplugins\bootstrap-markdown\bootstrap-markdown.css.map" />
+    <Content Include="dist\css\formplugins\cropperjs\cropper.css.map" />
+    <Content Include="dist\css\formplugins\dropzone\dropzone.css.map" />
+    <Content Include="dist\css\formplugins\ion-rangeslider\ion-rangeslider.css.map" />
+    <Content Include="dist\css\formplugins\nouislider\nouislider.css.map" />
+    <Content Include="dist\css\formplugins\select2\select2.bundle.css.map" />
+    <Content Include="dist\css\formplugins\smartwizard\smartwizard.css.map" />
+    <Content Include="dist\css\formplugins\summernote\summernote.css.map" />
+    <Content Include="dist\css\json-path-picker\json-path-picker.css.map" />
+    <Content Include="dist\css\miscellaneous\fullcalendar\fullcalendar.bundle.css.map" />
+    <Content Include="dist\css\miscellaneous\jqvmap\jqvmap.bundle.css.map" />
+    <Content Include="dist\css\miscellaneous\lightgallery\lightgallery.bundle.css.map" />
+    <Content Include="dist\css\miscellaneous\nestable\nestable.css.map" />
+    <Content Include="dist\css\miscellaneous\reactions\reactions.css.map" />
+    <Content Include="dist\css\miscellaneous\treeview\treeview.css.map" />
+    <Content Include="dist\css\notifications\sweetalert2\sweetalert2.bundle.css.map" />
+    <Content Include="dist\css\notifications\toastr\toastr.css.map" />
+    <Content Include="dist\css\page-invoice.css.map" />
+    <Content Include="dist\css\page-login-alt.css.map" />
+    <Content Include="dist\css\skins\skin-master.css.map" />
+    <Content Include="dist\css\statistics\c3\c3.css.map" />
+    <Content Include="dist\css\statistics\chartist\chartist.css.map" />
+    <Content Include="dist\css\statistics\chartjs\chartjs.css.map" />
+    <Content Include="dist\css\statistics\dygraph\dygraph.css.map" />
+    <Content Include="dist\css\theme-demo.css.map" />
+    <Content Include="dist\css\themes\cust-theme-1.css.map" />
+    <Content Include="dist\css\themes\cust-theme-10.css.map" />
+    <Content Include="dist\css\themes\cust-theme-11.css.map" />
+    <Content Include="dist\css\themes\cust-theme-12.css.map" />
+    <Content Include="dist\css\themes\cust-theme-13.css.map" />
+    <Content Include="dist\css\themes\cust-theme-14.css.map" />
+    <Content Include="dist\css\themes\cust-theme-15.css.map" />
+    <Content Include="dist\css\themes\cust-theme-2.css.map" />
+    <Content Include="dist\css\themes\cust-theme-3.css.map" />
+    <Content Include="dist\css\themes\cust-theme-4.css.map" />
+    <Content Include="dist\css\themes\cust-theme-5.css.map" />
+    <Content Include="dist\css\themes\cust-theme-6.css.map" />
+    <Content Include="dist\css\themes\cust-theme-7.css.map" />
+    <Content Include="dist\css\themes\cust-theme-8.css.map" />
+    <Content Include="dist\css\themes\cust-theme-9.css.map" />
+    <Content Include="dist\css\vendors.bundle.css.map" />
+    <Content Include="dist\img\favicon\site.webmanifest" />
+    <Content Include="dist\media\data\2500.json" />
+    <Content Include="dist\media\data\ch.json" />
+    <Content Include="dist\media\data\en.json" />
+    <Content Include="dist\media\data\es.json" />
+    <Content Include="dist\media\data\fa-brand-list.json" />
+    <Content Include="dist\media\data\fa-duotone.json" />
+    <Content Include="dist\media\data\fa-icon-list.json" />
+    <Content Include="dist\media\data\ng-bg-colors.json" />
+    <Content Include="dist\media\data\ng-icon-base.json" />
+    <Content Include="dist\media\data\ng-icon-list.json" />
+    <Content Include="dist\media\data\ng-text-colors.json" />
+    <Content Include="dist\media\data\plugin-reference.json" />
+    <Content Include="dist\media\data\project-structure.json" />
+    <Content Include="dist\media\data\server-demo.json" />
+    <Content Include="dist\webfonts\fa-brands-400.eot" />
+    <Content Include="dist\webfonts\fa-brands-400.ttf" />
+    <Content Include="dist\webfonts\fa-brands-400.woff" />
+    <Content Include="dist\webfonts\fa-brands-400.woff2" />
+    <Content Include="dist\webfonts\fa-duotone-900.eot" />
+    <Content Include="dist\webfonts\fa-duotone-900.ttf" />
+    <Content Include="dist\webfonts\fa-duotone-900.woff" />
+    <Content Include="dist\webfonts\fa-duotone-900.woff2" />
+    <Content Include="dist\webfonts\fa-light-300.eot" />
+    <Content Include="dist\webfonts\fa-light-300.ttf" />
+    <Content Include="dist\webfonts\fa-light-300.woff" />
+    <Content Include="dist\webfonts\fa-light-300.woff2" />
+    <Content Include="dist\webfonts\fa-regular-400.eot" />
+    <Content Include="dist\webfonts\fa-regular-400.ttf" />
+    <Content Include="dist\webfonts\fa-regular-400.woff" />
+    <Content Include="dist\webfonts\fa-regular-400.woff2" />
+    <Content Include="dist\webfonts\fa-solid-900.eot" />
+    <Content Include="dist\webfonts\fa-solid-900.ttf" />
+    <Content Include="dist\webfonts\fa-solid-900.woff" />
+    <Content Include="dist\webfonts\fa-solid-900.woff2" />
+    <Content Include="dist\webfonts\nextgen-icons.eot" />
+    <Content Include="dist\webfonts\nextgen-icons.ttf" />
+    <Content Include="dist\webfonts\nextgen-icons.woff" />
+    <Content Include="dist\webfonts\nextgen-icons.woff2" />
+    <Content Include="dist\webfonts\summernote.eot" />
+    <Content Include="dist\webfonts\summernote.ttf" />
+    <Content Include="dist\webfonts\summernote.woff" />
+    <Content Include="dist\webfonts\summernote.woff2" />
+    <Content Include="dist\MasterPage.Master" />
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62804</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44363/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
