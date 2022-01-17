@@ -29,10 +29,46 @@
     <link href="bt1160/bootstrap-table.min.css" rel="stylesheet" />
     <link href="bt1160/extensions/fixed-columns/bootstrap-table-fixed-columns.css" rel="stylesheet" />
 
+    <link rel="stylesheet" media="screen, print" href="css/formplugins/select2/select2.bundle.css">
+
     <!-- You can add your own stylesheet here to override any styles that comes before it
 		<link rel="stylesheet" media="screen, print" href="css/your_styles.css">-->
 
     <style>
+        /******************* Para los encabezados de los bootbox de mensajes ***********************************/
+        .modal-header-negro {
+            background-color: rgb(0, 0, 0) !important;
+            padding: 5px;
+        }
+
+        .modal-header-conexion-red {
+            background-color: midnightblue !important;
+            padding: 5px;
+        }
+
+        .modal-header-danger {
+            background-color: crimson !important;
+            padding: 5px;
+            display: block;
+            height: 2.5rem;
+        }
+
+        .modal-header-salir {
+            background-color: #FFFFFF !important;
+            color: rgba(0,0,0,.125);
+            padding: 5px;
+        }
+
+        .modal-header-aviso-restriccion {
+            background-color: gold !important;
+            padding: 5px;
+            display: block;
+        }
+
+        .modal-header-alert {
+            background-color: rgb(85, 172, 228) !important;
+            padding: 5px;
+        }
     </style>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -1653,6 +1689,8 @@
     <script src="bt1160/extensions/fixed-columns/bootstrap-table-fixed-columns.js"></script>
     <script src="bt1160/extensions/editable/bootstrap-table-editable.js"></script>
     <script src="bt1160/extensions/toolbar/bootstrap-table-toolbar.js"></script>
+
+    <script src="js/formplugins/select2/select2.bundle.js"></script>
 
     <script src="../jscustom/utils.js"></script>
     <script src="../jscustom/masterPage.js"></script>

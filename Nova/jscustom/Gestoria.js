@@ -1,20 +1,76 @@
 ﻿var PAGECONTROLS;
-
+var DtListaNominal;
 
 document.addEventListener('DOMContentLoaded', function () {
 
     fg_format_label_required('form_Captura');
     PAGECONTROLS = fg_setIFRAMEControls('js-page-content');
+    $('.select2').select2();
+
     $('#date_fechaNacimiento').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true
     });
-    btn_Guardar
+    $('#Cmb_Nombres').on('select2:select', function (e) {
+        var data = e.params.data;
+        var row = fg_GetRow(DtListaNominal, 'idListaNominal', data.id);
+        PAGECONTROLS.controls.Txt_nombres.value = row.nombres;
+        PAGECONTROLS.controls.Txt_primerApellido.value = row.primerApellido;
+        PAGECONTROLS.controls.Txt_segundoApellido.value = row.segundoApellido;
+        PAGECONTROLS.controls.Txt_calle.value = row.calle;
+        PAGECONTROLS.controls.Txt_claveElector.value = row.claveElector;
+    });
+
+
     PAGECONTROLS.controls.btn_Guardar.addEventListener('click', btn_Guardar_Click);
+    PAGECONTROLS.controls.btn_Cancelar.addEventListener('click', btn_Cancelar_Click);
+    
+    getListaNominalSimple();
     cargarCatalogosIniciales();
 
 })
 
+function getListaNominalSimple() {
+    try {
+
+        var obj_filtros = Object();
+
+        var ruta = '../Services/WSGestorias.asmx/getListaNominalSimple';
+        var $data = JSON.stringify({ 'Parametros': JSON.stringify(obj_filtros) });
+
+        $.ajax({
+            type: 'POST',
+            url: ruta,
+            data: $data,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function (datos) {
+
+                var mensaje_servidor = JSON.parse(datos.d);
+
+                if (mensaje_servidor.Estatus == _OK_) {
+                    var ds = JSON.parse(mensaje_servidor.Str_Respuesta_1);
+
+                    DtListaNominal = ds.listaNominal;
+                    fg_cargar_combo_from_List(PAGECONTROLS.controls.Cmb_Nombres, 'idListaNominal', 'nombreCompleto', ds.listaNominal, true);
+
+                }
+                else {
+                    fg_mensaje_problema_tecnico(mensaje_servidor);
+                }
+
+            }
+            , error: function (error) {
+                fg_mensaje_problema_tecnico(error);
+            }
+        });
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
+    }
+}
 function cargarCatalogosIniciales() {
     try {
 
@@ -29,7 +85,7 @@ function cargarCatalogosIniciales() {
             data: $data,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            async: true,
+            async: false,
             cache: false,
             success: function (datos) {
 
@@ -124,4 +180,7 @@ function btn_Guardar_Click() {
     catch (e) {
         fg_mensaje_problema_tecnico(e);
     }
+}
+function btn_Cancelar_Click() {
+    fg_limpiar_controles('form_Captura');
 }

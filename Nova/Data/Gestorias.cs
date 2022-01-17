@@ -59,6 +59,19 @@ namespace Nova.Data
 
             return ds;
         }
+        public DataSet getListaNominalSimple(Dictionary<string, object> _DyParametros)
+        {
+            DataSet ds = null;
+            string spname = "stdGetlistaNominalSimple";
+            Dictionary<string, object> dyparametros = cnxn.SetFormatDyDatos(_DyParametros, spname);
+            SqlParameter[] sqlparameters = cnxn.getSQLParameters(dyparametros);
+
+            ds = SqlHelper.ExecuteDataset(Cnxn.sCon, spname, sqlparameters);
+
+            ds.Tables[0].TableName = "listaNominal";
+
+            return ds;
+        }
         public DataSet setPersona(Dictionary<string, object> _DyParametros)
         {
             DataSet ds = null;

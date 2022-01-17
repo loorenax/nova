@@ -46,7 +46,8 @@
                                         <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
                                             <div class="form-group">
                                                 <label class="form-label" for="Txt_LNnombreCompleto">Nombre Completo</label>
-                                                <input type="text" class="form-control" id="Txt_LNnombreCompleto" required>
+                                                <%--<input type="text" class="form-control" id="Txt_LNnombreCompleto" required>--%>
+                                                <select class="select2 form-control w-100" id="Cmb_Nombres"></select>
                                                 <div class="invalid-feedback">
                                                     Escriba el nombre de la persona que quiere buscar en la lista nominal.
                                                 </div>
@@ -359,7 +360,7 @@
                     <div>
                         <ul class="list-table m-0">
                             <li>
-                                <button type="button" class="btn btn-lg btn-danger waves-effect waves-themed">
+                                <button id="btn_Cancelar" type="button" class="btn btn-lg btn-danger waves-effect waves-themed">
 						            <span class="fal fa-times mr-1"></span>
 						            Cancelar
 						        </button>
