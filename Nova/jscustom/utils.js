@@ -457,6 +457,35 @@ function fg_resultOK(_result) {
 
     return resultadoOK;
 }
+function fg_evaluar_result(_Dt_Result, _Mostrar_Aviso_Exitoso) {
+
+    var continuar = true;
+
+    try {
+
+        if (_Dt_Result[0].Estatus_Procedimiento == _OK_) {
+            if (_Mostrar_Aviso_Exitoso) {
+                fg_alert_aviso_exitoso(_Dt_Result[0].Mensaje_Procedimiento);
+            }
+
+        }
+        else if (_Dt_Result[0].Estatus_Procedimiento == _RESTRICCION_) {
+            continuar = false;
+            fg_mensaje_aviso_restriccion('Proceso', _Dt_Result[0].Mensaje_Procedimiento, 'No puede continuar.', _Dt_Result[0].Solucion_Procedimiento);
+        }
+        else {
+            continuar = false;
+            fg_mensaje_problema_tecnico_db();
+        }
+
+    }
+    catch (e) {
+        continuar = false;
+        fg_mensaje_problema_tecnico(e);
+    }
+
+    return continuar;
+}
 
 function fg_validarRFC(_rfc) {
     var valido = false;
@@ -493,4 +522,157 @@ function fg_mostrar_error(_Control, _Msg_Error) {
     catch (e) {
         fg_mensaje_problema_tecnico(e);
     }
+}
+
+
+function fg_format_label_required(_Agrupador) {
+    var obj_datos = new Object();
+
+    try {
+
+        var page_controls = fg_obtener_controles_agrupador(_Agrupador);
+
+        $.each(page_controls, function (key, value) {
+
+            var control = value;
+            var divagrupados = control.parentElement;
+
+            if (divagrupados.className.indexOf('form-group') != -1) {
+                var lbls = divagrupados.getElementsByClassName('form-label');
+                if (lbls.length > 0) {
+                    var lbl = lbls[0];
+                    if (lbl != null) {
+                        var etiqueta = lbl.innerHTML.split('*').join(''); //nos aseguramos que este limpia
+
+                        if (control.required) {
+                            lbl.innerHTML = '*' + etiqueta;
+                        }
+                        
+                    }
+
+                }
+            }
+        })
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
+    }
+
+}
+
+function fg_Get_Object_Control_Valor(_Agrupador, _Sufijo) {
+    var obj_datos = new Object();
+
+    try {
+
+        var page_controls = fg_obtener_controles_agrupador(_Agrupador);
+
+        $.each(page_controls, function (key, value) {
+
+            var control = value;
+            if (!fg_isEmptyOrNull(control.id)) {
+
+                if (control.id.indexOf('Txt_') != -1
+                    || control.id.indexOf('Cmb_') != -1
+                    || control.id.indexOf('ChkFalso_') != -1
+                    || control.id.indexOf('BtnChk_') != -1
+                    || control.id.indexOf('date_') != -1
+                    || control.id.indexOf('Rdo_') != -1
+                    || control.id.indexOf('Chk_') != -1
+                ) {
+
+                    var valor_entrada;
+
+                    //En este proceso limpiamos el prefijo que indentifica el tipo de control
+                    var nombre_campo = (control.id.split('Txt_').join(''));
+                    nombre_campo = nombre_campo.split('Cmb_').join('');
+                    nombre_campo = nombre_campo.split('ChkFalso_').join('');
+                    nombre_campo = nombre_campo.split('BtnChk_').join('');
+                    nombre_campo = nombre_campo.split('date_').join('');
+                    nombre_campo = nombre_campo.split('Rdo_').join('');
+                    nombre_campo = nombre_campo.split('Chk_').join('');
+
+
+                    //Le quitamos el sufijo
+                    //Ejemplo: Existen dos secciones de Filtro una dice Txt_Busqueda_Clave_Historico; Sufijo _Historico y otro dice Txt_Busqueda_Clave_Catalogo_Final Sufijo _Catalogo_Final
+                    // Pero el parametro que realmente esta esperando el sp es Busqueda_Clave
+                    if (!fg_isEmptyOrNull(_Sufijo)) {
+                        nombre_campo = nombre_campo.split('_' + _Sufijo).join('');
+                    }
+
+                    //nombre_campo = 'P_' + nombre_campo;
+                    //Filtramos para determinar de que manera tomaremos el valor
+                    //Los BtnChk_ son botones que simulan ser un Check Box y que nos daran un valor de SI o NO
+                    if (control.id.indexOf('BtnChk_') != -1) {
+                        valor_entrada = fg_getValue_BtnChk(control);
+                    }
+                    else {
+                        valor_entrada = control.value;
+                    }
+
+
+                    //Alimentamos el objeto con un Key con el nombre del Campo que obtuvimos de limpiar el id del contro y el value, Valor que tiene seleccionado o marcado el control
+                    obj_datos[nombre_campo] = valor_entrada;
+
+                }
+
+            }
+        })
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
+    }
+
+    return obj_datos;
+}
+
+function fg_alert_aviso_exitoso(_Mensaje, _Agrupador) {
+    //$.alert('<i class="fa fa-check" style="color:#4CAF50; font-size:24px"></i>&nbsp;&nbsp;<strong style="color:#4CAF50; font-size:18px">' + _Mensaje + '</strong>', { type: 'success' });
+
+
+    var wrapper = document.createElement('div')
+    wrapper.innerHTML = '<div class="alert alert-success' + ' alert-dismissible" role="alert">' + _Mensaje + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
+
+    var agrupador = document.getElementById(_Agrupador);
+
+    agrupador.append(wrapper);
+
+}
+function fg_alert_aviso_advertencia(_Mensaje) {
+    $.alert('<i class="glyphicon glyphicon-alert" style="color:#8a6d3b; font-size:24px"></i>&nbsp;&nbsp;<strong style="color:#8a6d3b; font-size:18px">' + _Mensaje + '</strong>', { type: 'warning' });
+}
+function fg_limpiar_controles(_Agrupador) {
+
+    var resultado = true;
+    var _output = new Object();
+    _output.Estatus = true;
+    _output.Mensaje = '';
+    $('.span-error').remove(); //Limpiar los span
+    if (_Agrupador !== _INDEFINIDO_) {
+        var controles_Agrupador = fg_obtener_controles_agrupador(_Agrupador);
+        $.each(controles_Agrupador, function (key, value) {
+
+            if (!fg_isEmptyOrNull(value.id)) {
+                var selector = '#' + value.id;
+                if ($(selector)[0] != undefined) {
+
+                    if ($(selector)[0].tagName.toLowerCase() == 'select') {
+                        $(selector)[0].selectedIndex = 0;
+                    }
+                    else {
+                        if ($(selector)[0].type != 'radio') {
+                            $(selector)[0].value = '';
+                        }
+                        
+                    }
+                }
+            }
+
+        });
+    }
+    else {
+        fg_mensaje_problema_tecnico(null);
+    }
+
+    return resultado;
 }

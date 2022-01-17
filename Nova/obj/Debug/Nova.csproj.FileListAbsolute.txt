@@ -115,8 +115,10 @@ C:\Trabajo\nova\Nova\bin\LitJSON.dll
 C:\Trabajo\nova\Nova\bin\Microsoft.ApplicationBlocks.Data.dll
 C:\Trabajo\nova\Nova\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Trabajo\nova\Nova\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Trabajo\nova\Nova\obj\Debug\Nova.csproj.AssemblyReference.cache
 C:\Trabajo\nova\Nova\obj\Debug\Nova.csproj.CoreCompileInputs.cache
 C:\Trabajo\nova\Nova\obj\Debug\Nova.csproj.CopyComplete
 C:\Trabajo\nova\Nova\obj\Debug\Nova.dll
 C:\Trabajo\nova\Nova\obj\Debug\Nova.pdb
+C:\Trabajo\nova\Nova\bin\Newtonsoft.Json.dll
+C:\Trabajo\nova\Nova\bin\Newtonsoft.Json.xml
+C:\Trabajo\nova\Nova\obj\Debug\Nova.csproj.AssemblyReference.cache
