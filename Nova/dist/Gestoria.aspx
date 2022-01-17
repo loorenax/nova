@@ -141,7 +141,6 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="Txt_celular">Celular</label>
                                                 <input type="text" class="form-control" id="Txt_celular" required>
-                                                
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -155,7 +154,6 @@
                                             <div class="form-group">
                                                 <label class="form-label" for="Txt_correoElectronico">Correo Electrónico</label>
                                                 <input type="email" class="form-control" id="Txt_correoElectronico" required>
-                                                
                                             </div>
                                         </div>
 
@@ -163,7 +161,22 @@
 
                                 </div>
                             </div>
+                            <div class="w-100 d-flex justify-content-center align-items-end mb-3 ">
+                                <div id="gpo_whatsapp" hidden>
+                                    <span class="mr-2">El teléfono tiene habilitado: </span>
+                                    <img id="img_whatsapp" src="img/whatsapp.png" alt="..." style="margin-right: 25px;">
+                                </div>
+
+                                <div id="gpo_facebook" hidden>
+                                    <span class="mr-2">El correo tiene habilitado: </span>
+                                    <img id="img_facebook" src="img/facebook.png" alt="...">
+                                </div>
+
+                            </div>
                         </div>
+
+
+
                         <%-- Dirección --%>
                         <div id="pnlDireccion" class="panel">
                             <div class="panel-hdr">

@@ -191,5 +191,81 @@ namespace Nova.Services
 
         }
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string verificarWhatsApp(string Parametros)
+        {
+            string Json_Resultado = string.Empty;
+            MensajeServidor ms = new MensajeServidor();
+            string respuesta = "NO";
+
+            try
+            {
+                JavaScriptSerializer deserializar_json = new JavaScriptSerializer();
+                Dictionary<string, object> obj_parametros = deserializar_json.Deserialize<Dictionary<string, object>>(Parametros);
+                
+                if(obj_parametros["celular"].ToString().Length >= 10)
+                {
+                    Random rand = new Random();
+                    int valor = rand.Next(1, 10);
+                    respuesta = (valor < 5 ? "SI" : "NO");
+                }
+
+                ms.Str_Respuesta_1 = respuesta;
+                ms.Estatus = Utils._OK_;
+            }
+            catch (Exception Ex)
+            {
+                ms.Estatus = Utils._ERROR_;
+                ms.Mensaje = Ex.Message;
+                Utils.problems(Ex);
+            }
+            finally
+            {
+                Json_Resultado = JsonMapper.ToJson(ms);
+            }
+
+
+            return Json_Resultado;
+
+
+        }
+        public string verificarFaceBook(string Parametros)
+        {
+            string Json_Resultado = string.Empty;
+            MensajeServidor ms = new MensajeServidor();
+
+            try
+            {
+                JavaScriptSerializer deserializar_json = new JavaScriptSerializer();
+                Dictionary<string, object> obj_parametros = deserializar_json.Deserialize<Dictionary<string, object>>(Parametros);
+
+                Random rand = new Random(10);
+                int valor = rand.Next(1, 10);
+
+                //De momento solo simulo la respuesta
+                string respuesta = (valor < 5 ? "SI" : "NO");
+                ms.Str_Respuesta_1 = respuesta;
+
+                ms.Estatus = Utils._OK_;
+            }
+            catch (Exception Ex)
+            {
+                ms.Estatus = Utils._ERROR_;
+                ms.Mensaje = Ex.Message;
+                Utils.problems(Ex);
+            }
+            finally
+            {
+                Json_Resultado = JsonMapper.ToJson(ms);
+            }
+
+
+            return Json_Resultado;
+
+
+        }
+
+
     }
 }

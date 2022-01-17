@@ -585,6 +585,7 @@
     <Content Include="dist\img\demo\throttle-no_trailing.png" />
     <Content Include="dist\img\demo\throttle.png" />
     <Content Include="dist\img\demo\vuejs.png" />
+    <Content Include="dist\img\facebook.png" />
     <Content Include="dist\img\favicon\android-chrome-144x144.png" />
     <Content Include="dist\img\favicon\apple-touch-icon.png" />
     <Content Include="dist\img\favicon\browserconfig.xml" />
@@ -622,6 +623,7 @@
     <Content Include="dist\img\thumbs\pic-7.png" />
     <Content Include="dist\img\thumbs\pic-8.png" />
     <Content Include="dist\img\thumbs\pic-9.png" />
+    <Content Include="dist\img\whatsapp.png" />
     <Content Include="dist\intel_analytics_dashboard.html" />
     <Content Include="dist\intel_introduction.html" />
     <Content Include="dist\intel_marketing_dashboard.html" />

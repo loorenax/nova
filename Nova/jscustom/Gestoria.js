@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
         PAGECONTROLS.controls.Txt_claveElector.value = row.claveElector;
     });
 
+    PAGECONTROLS.controls.Txt_celular.addEventListener("focusout", VerificarWhatsApp);
+    PAGECONTROLS.controls.Txt_correoElectronico.addEventListener("focusout", VerificarFaceBook);
 
     PAGECONTROLS.controls.btn_Guardar.addEventListener('click', btn_Guardar_Click);
     PAGECONTROLS.controls.btn_Cancelar.addEventListener('click', btn_Cancelar_Click);
@@ -183,4 +185,100 @@ function btn_Guardar_Click() {
 }
 function btn_Cancelar_Click() {
     fg_limpiar_controles('form_Captura');
+}
+
+function VerificarWhatsApp() {
+    try {
+
+        if (fg_isEmptyOrNull(PAGECONTROLS.controls.Txt_celular.value)) return;
+
+        var obj_filtros = Object();
+        obj_filtros.celular = PAGECONTROLS.controls.Txt_celular.value;
+
+        var ruta = '../Services/WSGestorias.asmx/verificarWhatsApp';
+        var $data = JSON.stringify({ 'Parametros': JSON.stringify(obj_filtros) });
+
+        $.ajax({
+            type: 'POST',
+            url: ruta,
+            data: $data,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function (datos) {
+
+                var mensaje_servidor = JSON.parse(datos.d);
+
+                PAGECONTROLS.controls.gpo_whatsapp.hidden = true;
+                if (mensaje_servidor.Estatus == _OK_) {
+                    if (mensaje_servidor.Str_Respuesta_1 == 'SI') {
+                        PAGECONTROLS.controls.gpo_whatsapp.hidden = false;
+                    }
+                }
+                else {
+                    fg_mensaje_problema_tecnico(mensaje_servidor);
+                }
+
+            }
+            , error: function (error) {
+                fg_mensaje_problema_tecnico(error);
+            }
+        });
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
+    }
+}
+
+function VerificarFaceBook() {
+    try {
+
+        if (fg_isEmptyOrNull(PAGECONTROLS.controls.Txt_correoElectronico.value)) return;
+
+        var obj_filtros = Object();
+        obj_filtros.correoElectronico = PAGECONTROLS.controls.Txt_correoElectronico.value;
+
+        var ruta = '../Services/WSGestorias.asmx/verificarFaceBook';
+        var $data = JSON.stringify({ 'Parametros': JSON.stringify(obj_filtros) });
+
+        $.ajax({
+            type: 'POST',
+            url: ruta,
+            data: $data,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            cache: false,
+            success: function (datos) {
+
+                var mensaje_servidor = JSON.parse(datos.d);
+
+                if (mensaje_servidor.Estatus == _OK_) {
+                    var ds = JSON.parse(mensaje_servidor.Str_Respuesta_1);
+
+                    PAGECONTROLS.controls.gpo_facebook.hidden = true;
+                    if (mensaje_servidor.Estatus == _OK_) {
+                        if (mensaje_servidor.Str_Respuesta_1 == 'SI') {
+                            PAGECONTROLS.controls.gpo_facebook.hidden = false;
+                        }
+                    }
+                    else {
+                        fg_mensaje_problema_tecnico(mensaje_servidor);
+                    }
+
+                }
+                else {
+                    fg_mensaje_problema_tecnico(mensaje_servidor);
+                }
+
+            }
+            , error: function (error) {
+                fg_mensaje_problema_tecnico(error);
+            }
+        });
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
+    }
 }
