@@ -73,7 +73,7 @@ function fg_mensaje_pregunta(_mensaje_aviso, _nombre_funcion_ejecutar_true, _nom
     bootbox.confirm({
         title: '<span style="color:white;">' + "Pregunta" + '</span>',
         message: '<div class="row">'
-            + '<div class="col-md-2"><i class="fa fa-question-circle mensaje-pregunta" style="font-size:40px;"></i>' + '</div>'
+            + '<div class="col-md-2"><i class="fal fa-question-circle mensaje-pregunta" style="font-size:40px;"></i>' + '</div>'
             + '<div class="col-md-10"><label class="etiqueta-mensajes" style="font-size:18px;">' + _mensaje_aviso + '</label>'
             + '<br><label class="etiqueta-mensajes" style="font-size:18px;" >' + '¿Esta seguro de continuar?' + '</label>'
             + '</div>'
@@ -82,11 +82,11 @@ function fg_mensaje_pregunta(_mensaje_aviso, _nombre_funcion_ejecutar_true, _nom
         buttons: {
 
             confirm: {
-                label: '<i class="fa fa-check"></i> SI',
+                label: '<i class="fal fa-check"></i> SI',
                 className: _CLASS_BTN_SUCCESS
             },
             cancel: {
-                label: '<i class="fa fa-times"></i> NO',
+                label: '<i class="fal fa-times"></i> NO',
                 className: _CLASS_BTN_DANGER
             }
         },
@@ -115,7 +115,7 @@ function fg_mensaje_pregunta_especial(_mensaje_aviso, _pregunta_especial, _nombr
     bootbox.confirm({
         title: '<span style="color:white;">' + "Pregunta" + '</span>',
         message: '<div class="row">'
-            + '<div class="col-md-2"><i class="fa fa-question-circle mensaje-pregunta" style="font-size:40px;"></i>' + '</div>'
+            + '<div class="col-md-2"><i class="fal fa-question-circle mensaje-pregunta" style="font-size:40px;"></i>' + '</div>'
             + '<div class="col-md-10"><label class="etiqueta-mensajes" style="font-size:18px;">' + _mensaje_aviso + '</label>'
             + '<div class="col-md-10"><label class="etiqueta-mensajes font-weight-bold" style="font-size:14px;">' + _pregunta_especial + '</label>'
             //+ '<br><label class="etiqueta-mensajes" style="font-size:18px;" >' + '¿Esta seguro de continuar?' + '</label>'
@@ -125,11 +125,11 @@ function fg_mensaje_pregunta_especial(_mensaje_aviso, _pregunta_especial, _nombr
         buttons: {
 
             confirm: {
-                label: '<i class="fa fa-check"></i> SI',
+                label: '<i class="fal fa-check"></i> SI',
                 className: _CLASS_BTN_SUCCESS
             },
             cancel: {
-                label: '<i class="fa fa-times"></i> NO',
+                label: '<i class="fal fa-times"></i> NO',
                 className: _CLASS_BTN_DANGER
             }
         },
@@ -165,7 +165,7 @@ function fg_mensaje_pregunta_especial(_mensaje_aviso, _pregunta_especial, _nombr
 function fg_mensaje_aviso_restriccion(_Modulo_Configuracion, _Problema, _Restriccion, _Solucion) {
     bootbox.dialog({
         message: '<div class="row">'
-            + '<div class="col-md-1"><i class="fa fa-exclamation-triangle mensaje-restriccion" style="font-size:32px;"></i>' + '</div>'
+            + '<div class="col-md-1"><i class="fal fa-exclamation-triangle mensaje-restriccion" style="font-size:32px;"></i>' + '</div>'
             + '<div class="col-md-11"><label class="etiqueta-mensajes"><strong>' + _PROBLEMA_ + "</strong>" + '</label>: &nbsp;&nbsp;' + _Problema
             + '<br><label class="etiqueta-mensajes"><strong>' + 'Restricción' + "</strong>" + '</label>: &nbsp;&nbsp;' + _Restriccion
             + '<br><label class="etiqueta-mensajes"><strong>' + _SOLUCION_ + "</strong>" + '</label>: &nbsp;&nbsp;' + _Solucion
@@ -627,7 +627,7 @@ function fg_Get_Object_Control_Valor(_Agrupador, _Sufijo) {
 }
 
 function fg_alert_aviso_exitoso(_Mensaje, _Agrupador) {
-    //$.alert('<i class="fa fa-check" style="color:#4CAF50; font-size:24px"></i>&nbsp;&nbsp;<strong style="color:#4CAF50; font-size:18px">' + _Mensaje + '</strong>', { type: 'success' });
+    //$.alert('<i class="fal fa-check" style="color:#4CAF50; font-size:24px"></i>&nbsp;&nbsp;<strong style="color:#4CAF50; font-size:18px">' + _Mensaje + '</strong>', { type: 'success' });
 
 
     var wrapper = document.createElement('div')
@@ -672,6 +672,40 @@ function fg_limpiar_controles(_Agrupador) {
     }
     else {
         fg_mensaje_problema_tecnico(null);
+    }
+
+    return resultado;
+}
+
+function fg_get_template_BtnSel(_Prefijo_Btn, _Nombre_Evento, _ID) {
+
+    var tag_template = ``;
+
+    try {
+
+        tag_template = `<button id="${_Prefijo_Btn}_${_ID.toString()}" type="button" class="btn btn-block bg-transparent btn-select-row" onclick="${_Nombre_Evento}(${_ID});"><i class="fal fa-check-circle"></i></button>`;
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
+    }
+
+    return tag_template;
+}
+function fg_GetRow(_Dt, _Campo, _Valor) {
+
+    var resultado;
+    try {
+
+        $.each(_Dt, function (key, value) {
+            if (value[_Campo] == _Valor) {
+                resultado = value;
+                return false;
+            }
+        })
+
+    }
+    catch (e) {
+        fg_mensaje_problema_tecnico(e);
     }
 
     return resultado;

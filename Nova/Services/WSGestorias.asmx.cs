@@ -125,5 +125,38 @@ namespace Nova.Services
         }
 
 
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string getListGestorias(string Parametros)
+        {
+            string Json_Resultado = string.Empty;
+            MensajeServidor ms = new MensajeServidor();
+
+            try
+            {
+                JavaScriptSerializer deserializar_json = new JavaScriptSerializer();
+                Dictionary<string, object> obj_parametros = deserializar_json.Deserialize<Dictionary<string, object>>(Parametros);
+                DataSet ds = dat.gestoriasGetListGestorias(obj_parametros);
+
+                ms.Str_Respuesta_1 = JsonConvert.SerializeObject(ds);
+                ms.Estatus = Utils._OK_;
+            }
+            catch (Exception Ex)
+            {
+                ms.Estatus = Utils._ERROR_;
+                ms.Mensaje = Ex.Message;
+                Utils.problems(Ex);
+            }
+            finally
+            {
+                Json_Resultado = JsonMapper.ToJson(ms);
+            }
+
+
+            return Json_Resultado;
+
+
+        }
+
     }
 }

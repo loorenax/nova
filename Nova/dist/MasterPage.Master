@@ -25,6 +25,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
     <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+
+    <link href="bt1160/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="bt1160/extensions/fixed-columns/bootstrap-table-fixed-columns.css" rel="stylesheet" />
+
     <!-- You can add your own stylesheet here to override any styles that comes before it
 		<link rel="stylesheet" media="screen, print" href="css/your_styles.css">-->
 
@@ -154,7 +158,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);" title="Reportes" data-filter-tags="utilities menu child another item">
+                                    <a href="Reportes.aspx" title="Reportes" data-filter-tags="utilities menu child another item">
                                         <span class="nav-link-text" data-i18n="nav.utilities_menu_child">Reportes</span>
                                     </a>
                                 </li>
@@ -1645,6 +1649,10 @@
     <script src="js/app.bundle.js"></script>
     <script src="js/dependency/moment/moment.js"></script>
     <script src="js/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.js"></script>
+    <script src="bt1160/bootstrap-table.js"></script>
+    <script src="bt1160/extensions/fixed-columns/bootstrap-table-fixed-columns.js"></script>
+    <script src="bt1160/extensions/editable/bootstrap-table-editable.js"></script>
+    <script src="bt1160/extensions/toolbar/bootstrap-table-toolbar.js"></script>
 
     <script src="../jscustom/utils.js"></script>
     <script src="../jscustom/masterPage.js"></script>

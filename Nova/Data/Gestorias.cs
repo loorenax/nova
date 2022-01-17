@@ -72,5 +72,19 @@ namespace Nova.Data
 
             return ds;
         }
+        public DataSet gestoriasGetListGestorias(Dictionary<string, object> _DyParametros)
+        {
+            DataSet ds = null;
+            string spname = "gestoriasGetListGestorias";
+            Dictionary<string, object> dyparametros = cnxn.SetFormatDyDatos(_DyParametros, spname);
+            SqlParameter[] sqlparameters = cnxn.getSQLParameters(dyparametros);
+
+            ds = SqlHelper.ExecuteDataset(Cnxn.sCon, spname, sqlparameters);
+
+            ds.Tables[0].TableName = "personas";
+
+            return ds;
+        }
+
     }
 }
