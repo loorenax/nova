@@ -255,7 +255,7 @@ function VerificarFaceBook() {
                 var mensaje_servidor = JSON.parse(datos.d);
 
                 if (mensaje_servidor.Estatus == _OK_) {
-                    var ds = JSON.parse(mensaje_servidor.Str_Respuesta_1);
+                    //var ds = JSON.parse(mensaje_servidor.Str_Respuesta_1);
 
                     PAGECONTROLS.controls.gpo_facebook.hidden = true;
                     if (mensaje_servidor.Estatus == _OK_) {

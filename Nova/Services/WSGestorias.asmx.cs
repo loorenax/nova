@@ -230,6 +230,9 @@ namespace Nova.Services
 
 
         }
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public string verificarFaceBook(string Parametros)
         {
             string Json_Resultado = string.Empty;
@@ -240,7 +243,7 @@ namespace Nova.Services
                 JavaScriptSerializer deserializar_json = new JavaScriptSerializer();
                 Dictionary<string, object> obj_parametros = deserializar_json.Deserialize<Dictionary<string, object>>(Parametros);
 
-                Random rand = new Random(10);
+                Random rand = new Random();
                 int valor = rand.Next(1, 10);
 
                 //De momento solo simulo la respuesta
